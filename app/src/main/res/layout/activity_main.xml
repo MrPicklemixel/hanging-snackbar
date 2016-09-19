@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent_relative_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Button
+        android:id="@+id/button_1"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="64dp"
+        android:text="@string/regular_snackbar" />
+
+    <Button
+        android:id="@+id/button_2"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_1"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/regular_snackbar_with_action" />
+
+    <Button
+        android:id="@+id/button_3"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/indefinate_snackbar" />
+
+    <Button
+        android:id="@+id/button_4"
+        android:layout_width="240dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/button_3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp"
+        android:text="@string/customised_snackbar" />
+
+
+</RelativeLayout>

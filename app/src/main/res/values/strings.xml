@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">HangingSnackbarExample</string>
+    <string name="regular_snackbar">Regular Snackbar</string>
+    <string name="regular_snackbar_with_action">Regular Snackbar with Action</string>
+    <string name="indefinate_snackbar">Indefinite Snackbar</string>
+    <string name="customised_snackbar">Customised Snackbar with Object</string>
+</resources>
