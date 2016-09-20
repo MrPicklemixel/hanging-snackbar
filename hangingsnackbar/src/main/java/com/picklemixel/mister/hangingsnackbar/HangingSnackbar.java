@@ -72,6 +72,8 @@ public class HangingSnackbar {
             }
             if (snackbarParams.actionTypeface != null) {
                 holder.actionTextView.setTypeface(snackbarParams.actionTypeface);
+            } else {
+                holder.actionTextView.setTypeface(Typeface.DEFAULT_BOLD);
             }
             holder.actionTextView.setOnClickListener(onClickListener);
         }

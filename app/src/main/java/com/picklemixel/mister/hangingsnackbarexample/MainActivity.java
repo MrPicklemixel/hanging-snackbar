@@ -1,5 +1,6 @@
 package com.picklemixel.mister.hangingsnackbarexample;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -76,10 +77,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
             //Customised snackbar
             case R.id.button_4:
+                Typeface typeface = Typeface.createFromAsset(getAssets(), "fonts/DoppioOne_Regular.ttf");
                 RandomObject randomObject = new RandomObject();
                 new HangingSnackbar.Builder(getBaseContext(), parentLayout, HangingSnackbar.LENGTH_LONG)
-                        .setText("I hold an object of any type, I will return it on the action press")
-                        .setActionText("Got it", button4Callback, randomObject)
+                        .setText("I hold an object of any type, I will return it on the action press", R.color.dark_grey)
+                        .setTextTypeface(typeface)
+                        .setActionText("Got it", button4Callback, randomObject, R.color.dark_blue)
+                        .setActionTypeface(typeface)
+                        .setBackgroundColor(R.color.white)
                         .build()
                         .show();
                 break;
