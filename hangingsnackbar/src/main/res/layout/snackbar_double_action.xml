@@ -1,28 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/background_relative_layout"
-    android:layout_width="match_parent"
-    android:layout_height="@dimen/snackbar_double_height"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
     android:background="@color/background_fill"
+    android:elevation="6dp"
+    android:clipChildren="false"
     android:orientation="vertical">
 
     <TextView
         android:id="@+id/text_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginBottom="@dimen/margin_vertical_large"
-        android:layout_marginLeft="@dimen/margin_horizontal"
-        android:layout_marginTop="@dimen/margin_vertical_large"
+        android:layout_height="wrap_content"
         android:layout_toLeftOf="@+id/action_text_view"
         android:maxLines="2"
+        android:paddingBottom="@dimen/margin_vertical_large"
+        android:paddingLeft="@dimen/margin_horizontal"
+        android:paddingTop="@dimen/margin_vertical_large"
         android:textColor="@color/text_color"
         android:textSize="14sp" />
 
     <TextView
         android:id="@+id/action_text_view"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
+        android:layout_alignTop="@+id/text_view"
+        android:layout_alignBottom="@+id/text_view"
         android:gravity="center"
         android:maxLines="1"
         android:paddingBottom="@dimen/margin_vertical_small"

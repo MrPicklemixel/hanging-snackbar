@@ -71,7 +71,7 @@ public class HangingSnackbar {
                 holder.actionTextView.setTextColor(ContextCompat.getColor(snackbarParams.context, snackbarParams.actionColour));
             }
             if (snackbarParams.actionTypeface != null) {
-                holder.textTextView.setTypeface(snackbarParams.actionTypeface);
+                holder.actionTextView.setTypeface(snackbarParams.actionTypeface);
             }
             holder.actionTextView.setOnClickListener(onClickListener);
         }
