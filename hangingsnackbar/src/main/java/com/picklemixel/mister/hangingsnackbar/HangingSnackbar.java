@@ -83,7 +83,7 @@ public class HangingSnackbar {
         }
     }
 
-    protected void animateIn() {
+    void animateIn() {
         snackbarParams.parentView.addView(snackbarParams.snackView);
         RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
         params.setMargins(0, -snackbarParams.offset, 0, 0);
@@ -91,15 +91,15 @@ public class HangingSnackbar {
         snackbarParams.snackView.animate().translationY(snackbarParams.offset);
     }
 
-    protected long getLength() {
+    long getLength() {
         return snackbarParams.length;
     }
 
-    protected void animateOut() {
+    void animateOut() {
         snackbarParams.snackView.animate().translationY(0).setListener(controller);
     }
 
-    protected void removeViewViewFromParent() {
+    void removeViewViewFromParent() {
         snackbarParams.parentView.removeView(snackbarParams.snackView);
     }
 
@@ -201,23 +201,23 @@ public class HangingSnackbar {
 
     }
 
-    protected static class SnackbarParams<T> {
-        public Context context;
-        public ViewGroup parentView;
-        public long length;
-        public RelativeLayout snackView;
-        public String text;
-        public String actionText;
-        public int offset;
-        public IHangingSnackbarCallback actionCallback;
-        public int backgroundColour;
-        public int textColour;
-        public int actionColour;
-        public T callbackObject;
-        public Typeface textTypeface;
-        public Typeface actionTypeface;
+    private static class SnackbarParams<T> {
+        Context context;
+        ViewGroup parentView;
+        long length;
+        RelativeLayout snackView;
+        String text;
+        String actionText;
+        int offset;
+        IHangingSnackbarCallback actionCallback;
+        int backgroundColour;
+        int textColour;
+        int actionColour;
+        T callbackObject;
+        Typeface textTypeface;
+        Typeface actionTypeface;
 
-        protected SnackbarParams(Context context, ViewGroup parentView) {
+        SnackbarParams(Context context, ViewGroup parentView) {
             this.context = context;
             this.parentView = parentView;
         }
@@ -226,11 +226,11 @@ public class HangingSnackbar {
 
     private class ViewHolder {
 
-        public TextView textTextView;
-        public TextView actionTextView;
-        public RelativeLayout backgroundRelativeLayout;
+        TextView textTextView;
+        TextView actionTextView;
+        RelativeLayout backgroundRelativeLayout;
 
-        public ViewHolder(RelativeLayout snackView) {
+        ViewHolder(RelativeLayout snackView) {
             textTextView = (TextView) snackView.findViewById(R.id.text_view);
             actionTextView = (TextView) snackView.findViewById(R.id.action_text_view);
             backgroundRelativeLayout = (RelativeLayout) snackView.findViewById(R.id.background_relative_layout);

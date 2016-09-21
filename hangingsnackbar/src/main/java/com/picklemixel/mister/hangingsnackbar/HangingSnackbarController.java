@@ -8,7 +8,7 @@ import java.util.ArrayList;
 /**
  * Masterfully pieced together by the Al-Mighty Paul on 19/09/16.
  */
-public class HangingSnackbarController implements Animator.AnimatorListener {
+class HangingSnackbarController implements Animator.AnimatorListener {
 
     private static HangingSnackbarController instance;
     private static ArrayList<HangingSnackbar> queuedSnackbars;
@@ -16,14 +16,14 @@ public class HangingSnackbarController implements Animator.AnimatorListener {
 
     private HangingSnackbarController () {}
 
-    public static HangingSnackbarController getInstance() {
+    static HangingSnackbarController getInstance() {
         if (instance == null) {
             instance = new HangingSnackbarController();
         }
         return instance;
     }
 
-    protected void show(HangingSnackbar snackbar) {
+    void show(HangingSnackbar snackbar) {
         if (!snackbarInView) {
             if (queuedSnackbars == null) {
                 queuedSnackbars = new ArrayList<>();
@@ -43,15 +43,12 @@ public class HangingSnackbarController implements Animator.AnimatorListener {
         }
     }
 
-    protected void hide() {
+    void hide() {
         queuedSnackbars.get(0).animateOut();
     }
 
-    protected boolean isSnackbarInView (HangingSnackbar snackbar) {
-        if (queuedSnackbars != null && !queuedSnackbars.isEmpty()) {
-            return (snackbarInView && snackbar == queuedSnackbars.get(0));
-        }
-        return false;
+    boolean isSnackbarInView(HangingSnackbar snackbar) {
+        return queuedSnackbars != null && !queuedSnackbars.isEmpty() && (snackbarInView && snackbar == queuedSnackbars.get(0));
     }
 
     @Override
@@ -82,7 +79,7 @@ public class HangingSnackbarController implements Animator.AnimatorListener {
 
     private class Timer extends CountDownTimer {
 
-        public Timer(long length) {
+        Timer(long length) {
             super(length, 1000);
         }
 
