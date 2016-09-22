@@ -24,6 +24,7 @@ HangingSnackbar snackbar = new HangingSnackbar.Builder(getBaseContext(), parentL
       
 snackbar.show();
 ```
+Callback and object can be null.
 
 ### Customisation methods
 ```
