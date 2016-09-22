@@ -25,6 +25,7 @@ HangingSnackbar snackbar = new HangingSnackbar.Builder(getBaseContext(), parentL
 snackbar.show();
 ```
 Callback and object can be null.
+parentLayoutView must be a RelativeLayout or FrameLayout, other layouts will throw an exception
 
 ### Customisation methods
 ```
