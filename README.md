@@ -1,6 +1,6 @@
 # Hanging Snackbar
 
-A (mostly) material Snackbar equivilant that drops instead of rises.
+A (mostly) material Snackbar equivalent that drops instead of rises.
 
 <img src="http://i.imgur.com/vyZgbph.gif" alt="Regular Snackbar" width="320"/>
 <img src="http://i.imgur.com/rVmIgBa.gif" alt="Regular Snackbar with action" width="320"/>
@@ -10,7 +10,7 @@ A (mostly) material Snackbar equivilant that drops instead of rises.
 ## Code
 
 ```
-private IHangingSnackbarCallback<YourObject> snackbarCallback = new IHangingSnackbarCallback<YourObject>() {
+private IHangingSnackbarCallback.OnActionClickedListener<YourObject> snackbarCallback = new IHangingSnackbarCallback.OnActionClickedListener<YourObject>() {
     @Override
     public void actionClicked(YourObject obj) {
         Log.d("ACT_CLICKED", obj.toString());
@@ -26,12 +26,15 @@ snackbar.show();
 ```
 Callback and object can be null.
 
+parentLayoutView must be a RelativeLayout, FrameLayout, or CoordinatorLayout. Other layouts will throw an exception
+
 ### Customisation methods
 ```
 void setText(String text, int colorId)
-void setActionText(String actionText, IHangingSnackbarCallback actionCallback, T callbackObject, int colorId)
+void setActionText(String actionText, IHangingSnackbarCallback.OnActionClickedListener actionCallback, T callbackObject, int colorId)
 void setTextTypeface(Typeface typeface)
 void setBackgroundColor(int colorId)
+void setOnDismissedListener(IHangingSnackbarCallback.OnDismissedListener dismissCallback)
 ```
 colorId refers to the resource ID.
 setText and setActionText also allow resource ID's in place of the String
@@ -41,6 +44,7 @@ setText and setActionText also allow resource ID's in place of the String
 void show()
 void dismiss()
 boolean isInView()
+boolean isInQueue()
 ```
 
 ## Installation
@@ -54,6 +58,6 @@ repositories {
 App build.gradle:
 ```
 dependencies {
-    compile 'com.picklemixel.mister:hangingsnackbar:0.1.0'
+    compile 'com.picklemixel.mister:hangingsnackbar:0.2.1'
 }
 ```
