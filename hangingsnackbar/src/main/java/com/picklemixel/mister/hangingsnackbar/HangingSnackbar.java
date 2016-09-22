@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import static com.picklemixel.mister.hangingsnackbar.IHangingSnackbarCallback.*;
+
 /**
  * Masterfully pieced together by the Al-Mighty Paul on 19/09/16.
  */
@@ -32,6 +34,7 @@ public class HangingSnackbar {
     private HangingSnackbar(SnackbarParams params) {
         snackbarParams = params;
         controller = HangingSnackbarController.getInstance();
+        snackbarParams.id = controller.createId();
 
         LayoutInflater inflater = LayoutInflater.from(snackbarParams.context);
 
@@ -101,6 +104,9 @@ public class HangingSnackbar {
 
     void removeViewViewFromParent() {
         snackbarParams.parentView.removeView(snackbarParams.snackView);
+        if (snackbarParams.dismissedCallback != null) {
+            snackbarParams.dismissedCallback.onDismissed();
+        }
     }
 
     public HangingSnackbar show() {
@@ -114,8 +120,16 @@ public class HangingSnackbar {
         }
     }
 
+    public boolean isInQueue() {
+        return controller.isSnackbarInQueue(snackbarParams.id);
+    }
+
     public boolean isInView() {
-        return controller.isSnackbarInView(this);
+        return controller.isSnackbarInView(snackbarParams.id);
+    }
+
+    public int getId() {
+        return snackbarParams.id;
     }
 
     public static class Builder {
@@ -154,21 +168,21 @@ public class HangingSnackbar {
             return this;
         }
 
-        public <T> Builder setActionText(String actionText, IHangingSnackbarCallback actionCallback, T callbackObject) {
+        public <T> Builder setActionText(String actionText, OnActionClickedListener actionCallback, T callbackObject) {
             params.actionText = actionText;
             params.actionCallback = actionCallback;
             params.callbackObject = callbackObject;
             return this;
         }
 
-        public <T> Builder setActionText(int actionTextId, IHangingSnackbarCallback actionCallback, T callbackObject) {
+        public <T> Builder setActionText(int actionTextId, OnActionClickedListener actionCallback, T callbackObject) {
             params.actionText = params.context.getString(actionTextId);
             params.actionCallback = actionCallback;
             params.callbackObject = callbackObject;
             return this;
         }
 
-        public <T> Builder setActionText(String actionText, IHangingSnackbarCallback actionCallback, T callbackObject, int colorId) {
+        public <T> Builder setActionText(String actionText, OnActionClickedListener actionCallback, T callbackObject, int colorId) {
             params.actionColour = colorId;
             params.actionText = actionText;
             params.actionCallback = actionCallback;
@@ -176,11 +190,16 @@ public class HangingSnackbar {
             return this;
         }
 
-        public <T> Builder setActionText(int actionTextId, IHangingSnackbarCallback actionCallback, T callbackObject, int colorId) {
+        public <T> Builder setActionText(int actionTextId, OnActionClickedListener actionCallback, T callbackObject, int colorId) {
             params.actionColour = colorId;
             params.actionText = params.context.getString(actionTextId);
             params.actionCallback = actionCallback;
             params.callbackObject = callbackObject;
+            return this;
+        }
+
+        public Builder setOnDismissedListener(OnDismissedListener dismissedCallback) {
+            params.dismissedCallback = dismissedCallback;
             return this;
         }
 
@@ -202,6 +221,7 @@ public class HangingSnackbar {
     }
 
     private static class SnackbarParams<T> {
+        int id;
         Context context;
         ViewGroup parentView;
         long length;
@@ -209,7 +229,8 @@ public class HangingSnackbar {
         String text;
         String actionText;
         int offset;
-        IHangingSnackbarCallback actionCallback;
+        OnActionClickedListener actionCallback;
+        OnDismissedListener dismissedCallback;
         int backgroundColour;
         int textColour;
         int actionColour;

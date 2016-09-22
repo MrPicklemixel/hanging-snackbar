@@ -11,10 +11,13 @@ import java.util.ArrayList;
 class HangingSnackbarController implements Animator.AnimatorListener {
 
     private static HangingSnackbarController instance;
-    private static ArrayList<HangingSnackbar> queuedSnackbars;
-    private static boolean snackbarInView;
+    private ArrayList<HangingSnackbar> queuedSnackbars;
+    private boolean snackbarInView;
+    private int count;
 
-    private HangingSnackbarController () {}
+    private HangingSnackbarController () {
+        count = 1;
+    }
 
     static HangingSnackbarController getInstance() {
         if (instance == null) {
@@ -47,8 +50,12 @@ class HangingSnackbarController implements Animator.AnimatorListener {
         queuedSnackbars.get(0).animateOut();
     }
 
-    boolean isSnackbarInView(HangingSnackbar snackbar) {
-        return queuedSnackbars != null && !queuedSnackbars.isEmpty() && (snackbarInView && snackbar == queuedSnackbars.get(0));
+    boolean isSnackbarInView(int id) {
+        return queuedSnackbars != null && !queuedSnackbars.isEmpty() && (snackbarInView && id == queuedSnackbars.get(0).getId());
+    }
+
+    public boolean isSnackbarInQueue(int id) {
+        return false;
     }
 
     @Override
@@ -75,6 +82,10 @@ class HangingSnackbarController implements Animator.AnimatorListener {
     @Override
     public void onAnimationRepeat(Animator animation) {
         //Not needed
+    }
+
+    public int createId() {
+        return count++;
     }
 
     private class Timer extends CountDownTimer {
