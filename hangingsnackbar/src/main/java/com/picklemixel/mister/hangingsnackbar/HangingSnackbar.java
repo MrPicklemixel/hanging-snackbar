@@ -99,7 +99,7 @@ public class HangingSnackbar {
             snackbarParams.snackView.animate().translationY(snackbarParams.offset);
         } catch (ClassCastException e) {
             Log.e(TAG, "Incompatible parent layout " + snackbarParams.parentView.getClass().getSimpleName() +
-                    ", please use RelativeLayout or FrameLayout");
+                    ", please use RelativeLayout, FrameLayout, or CoordinatorLayout");
         }
     }
 
