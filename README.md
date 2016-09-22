@@ -2,10 +2,10 @@
 
 A (mostly) material Snackbar equivilant that drops instead of rises.
 
-<img src="http://i.imgur.com/vyZgbph.gif" alt="Regular Snackbar" style="width: 320px; display: inline-block;"/>
-<img src="http://i.imgur.com/rVmIgBa.gif" alt="Regular Snackbar with action" style="width: 320px; display: inline-block;"/>
-<img src="http://i.imgur.com/qT2BttX.gif" alt="Indefinite Snackbar" style="width: 320px; display: inline-block;"/>
-<img src="http://i.imgur.com/kK6PvQB.gif" alt="Customised Snackbar with object" style="width: 320px; display: inline-block;"/>
+<img src="http://i.imgur.com/vyZgbph.gif" alt="Regular Snackbar" width="320"/>
+<img src="http://i.imgur.com/rVmIgBa.gif" alt="Regular Snackbar with action" width="320"/>
+<img src="http://i.imgur.com/qT2BttX.gif" alt="Indefinite Snackbar" width="320"/>
+<img src="http://i.imgur.com/kK6PvQB.gif" alt="Customised Snackbar with object" width="320"/>
 
 ## Code
 
