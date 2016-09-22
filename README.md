@@ -10,7 +10,7 @@ A (mostly) material Snackbar equivalent that drops instead of rises.
 ## Code
 
 ```
-private IHangingSnackbarCallback<YourObject> snackbarCallback = new IHangingSnackbarCallback<YourObject>() {
+private IHangingSnackbarCallback.OnActionClickedListener<YourObject> snackbarCallback = new IHangingSnackbarCallback.OnActionClickedListener<YourObject>() {
     @Override
     public void actionClicked(YourObject obj) {
         Log.d("ACT_CLICKED", obj.toString());
@@ -30,9 +30,10 @@ parentLayoutView must be a RelativeLayout or FrameLayout, other layouts will thr
 ### Customisation methods
 ```
 void setText(String text, int colorId)
-void setActionText(String actionText, IHangingSnackbarCallback actionCallback, T callbackObject, int colorId)
+void setActionText(String actionText, IHangingSnackbarCallback.OnActionClickedListener actionCallback, T callbackObject, int colorId)
 void setTextTypeface(Typeface typeface)
 void setBackgroundColor(int colorId)
+void setOnDismissedListener(IHangingSnackbarCallback.OnDismissedListener dismissCallback)
 ```
 colorId refers to the resource ID.
 setText and setActionText also allow resource ID's in place of the String
@@ -56,6 +57,6 @@ repositories {
 App build.gradle:
 ```
 dependencies {
-    compile 'com.picklemixel.mister:hangingsnackbar:0.1.0'
+    compile 'com.picklemixel.mister:hangingsnackbar:0.2.0'
 }
 ```
