@@ -42,6 +42,7 @@ setText and setActionText also allow resource ID's in place of the String
 void show()
 void dismiss()
 boolean isInView()
+boolean isInQueue()
 ```
 
 ## Installation
