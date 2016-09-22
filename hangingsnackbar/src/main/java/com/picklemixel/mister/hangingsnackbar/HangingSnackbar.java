@@ -3,12 +3,15 @@ package com.picklemixel.mister.hangingsnackbar;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import static android.content.ContentValues.TAG;
 import static com.picklemixel.mister.hangingsnackbar.IHangingSnackbarCallback.*;
 
 /**
@@ -89,11 +92,31 @@ public class HangingSnackbar {
     }
 
     void animateIn() {
-        snackbarParams.parentView.addView(snackbarParams.snackView);
-        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(0, -snackbarParams.offset, 0, 0);
-        snackbarParams.snackView.setLayoutParams(params);
-        snackbarParams.snackView.animate().translationY(snackbarParams.offset);
+        try {
+            snackbarParams.parentView.addView(snackbarParams.snackView);
+            setMarginParams();
+            snackbarParams.snackView.animate().translationY(snackbarParams.offset);
+        } catch (ClassCastException e) {
+            Log.e(TAG, "Incompatible parent layout " + snackbarParams.parentView.getClass().getSimpleName() +
+                    ", please use RelativeLayout or FrameLayout");
+        }
+    }
+
+    private void setMarginParams() throws ClassCastException {
+        switch (snackbarParams.parentView.getClass().getSimpleName()) {
+            case "RelativeLayout":
+                RelativeLayout.LayoutParams relativeParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                relativeParams.setMargins(0, -snackbarParams.offset, 0, 0);
+                snackbarParams.snackView.setLayoutParams(relativeParams);
+                break;
+            case "FrameLayout":
+                FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
+                frameParams.setMargins(0, -snackbarParams.offset, 0, 0);
+                snackbarParams.snackView.setLayoutParams(frameParams);
+                break;
+            default:
+                throw new ClassCastException();
+        }
     }
 
     long getLength() {
@@ -223,10 +246,10 @@ public class HangingSnackbar {
 
     }
 
-    private static class SnackbarParams<T> {
+    private static class SnackbarParams<T1 extends ViewGroup, T2> {
         int id;
         Context context;
-        ViewGroup parentView;
+        T1 parentView;
         long length;
         RelativeLayout snackView;
         String text;
@@ -237,11 +260,11 @@ public class HangingSnackbar {
         int backgroundColour;
         int textColour;
         int actionColour;
-        T callbackObject;
+        T2 callbackObject;
         Typeface textTypeface;
         Typeface actionTypeface;
 
-        SnackbarParams(Context context, ViewGroup parentView) {
+        SnackbarParams(Context context, T1 parentView) {
             this.context = context;
             this.parentView = parentView;
         }
