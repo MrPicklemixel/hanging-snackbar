@@ -55,6 +55,11 @@ class HangingSnackbarController implements Animator.AnimatorListener {
     }
 
     public boolean isSnackbarInQueue(int id) {
+        for (HangingSnackbar snackbar : queuedSnackbars) {
+            if (snackbar.getId() == id) {
+                return true;
+            }
+        }
         return false;
     }
 

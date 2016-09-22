@@ -21,11 +21,13 @@ public class HangingSnackbar {
     public static final long LENGTH_INDEFINITE = -1;
     private HangingSnackbarController controller;
     private SnackbarParams snackbarParams;
+    private boolean actionClicked;
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
-            if (snackbarParams.actionCallback != null) {
+            if (snackbarParams.actionCallback != null && !actionClicked) {
+                actionClicked = true;
                 snackbarParams.actionCallback.actionClicked(snackbarParams.callbackObject);
             }
         }
@@ -104,6 +106,7 @@ public class HangingSnackbar {
 
     void removeViewViewFromParent() {
         snackbarParams.parentView.removeView(snackbarParams.snackView);
+        actionClicked = false;
         if (snackbarParams.dismissedCallback != null) {
             snackbarParams.dismissedCallback.onDismissed();
         }
