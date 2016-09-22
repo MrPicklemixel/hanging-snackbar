@@ -1,6 +1,6 @@
 # Hanging Snackbar
 
-A (mostly) material Snackbar equivilant that drops instead of rises.
+A (mostly) material Snackbar equivalent that drops instead of rises.
 
 <img src="http://i.imgur.com/vyZgbph.gif" alt="Regular Snackbar" width="320"/>
 <img src="http://i.imgur.com/rVmIgBa.gif" alt="Regular Snackbar with action" width="320"/>
