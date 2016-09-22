@@ -25,7 +25,8 @@ HangingSnackbar snackbar = new HangingSnackbar.Builder(getBaseContext(), parentL
 snackbar.show();
 ```
 Callback and object can be null.
-parentLayoutView must be a RelativeLayout or FrameLayout, other layouts will throw an exception
+
+parentLayoutView must be a RelativeLayout, FrameLayout, or CoordinatorLayout. Other layouts will throw an exception
 
 ### Customisation methods
 ```
@@ -57,6 +58,6 @@ repositories {
 App build.gradle:
 ```
 dependencies {
-    compile 'com.picklemixel.mister:hangingsnackbar:0.2.0'
+    compile 'com.picklemixel.mister:hangingsnackbar:0.2.1'
 }
 ```
