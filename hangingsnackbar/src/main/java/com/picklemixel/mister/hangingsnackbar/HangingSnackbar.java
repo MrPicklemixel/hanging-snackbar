@@ -2,6 +2,7 @@ package com.picklemixel.mister.hangingsnackbar;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.content.ContextCompat;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,7 +12,6 @@ import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import static android.content.ContentValues.TAG;
 import static com.picklemixel.mister.hangingsnackbar.IHangingSnackbarCallback.*;
 
 /**
@@ -19,6 +19,7 @@ import static com.picklemixel.mister.hangingsnackbar.IHangingSnackbarCallback.*;
  */
 public class HangingSnackbar {
 
+    private static final String TAG = "hanging-snackbar";
     public static final long LENGTH_SHORT = 3000;
     public static final long LENGTH_LONG = 5000;
     public static final long LENGTH_INDEFINITE = -1;
@@ -113,6 +114,11 @@ public class HangingSnackbar {
                 FrameLayout.LayoutParams frameParams = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
                 frameParams.setMargins(0, -snackbarParams.offset, 0, 0);
                 snackbarParams.snackView.setLayoutParams(frameParams);
+                break;
+            case "CoordinatorLayout":
+                CoordinatorLayout.LayoutParams coordParams = new CoordinatorLayout.LayoutParams(CoordinatorLayout.LayoutParams.MATCH_PARENT, CoordinatorLayout.LayoutParams.WRAP_CONTENT);
+                coordParams.setMargins(0, -snackbarParams.offset, 0, 0);
+                snackbarParams.snackView.setLayoutParams(coordParams);
                 break;
             default:
                 throw new ClassCastException();
