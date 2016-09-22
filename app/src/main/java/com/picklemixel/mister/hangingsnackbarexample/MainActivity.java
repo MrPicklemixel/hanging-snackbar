@@ -4,6 +4,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -14,24 +15,24 @@ import java.util.Random;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    RelativeLayout parentLayout;
+    ViewGroup parentLayout;
     HangingSnackbar button3Snackbar;
 
-    private IHangingSnackbarCallback<Void> button2Callback = new IHangingSnackbarCallback<Void>() {
+    private IHangingSnackbarCallback.OnActionClickedListener<Void> button2Callback = new IHangingSnackbarCallback.OnActionClickedListener<Void>() {
         @Override
         public void actionClicked(Void obj) {
             Toast.makeText(getBaseContext(), "Button 2 Action pressed.", Toast.LENGTH_SHORT).show();
         }
     };
 
-    private IHangingSnackbarCallback<Void> button3Callback = new IHangingSnackbarCallback<Void>() {
+    private IHangingSnackbarCallback.OnActionClickedListener<Void> button3Callback = new IHangingSnackbarCallback.OnActionClickedListener<Void>() {
         @Override
         public void actionClicked(Void obj) {
             button3Snackbar.dismiss();
         }
     };
 
-    private IHangingSnackbarCallback<RandomObject> button4Callback = new IHangingSnackbarCallback<RandomObject>() {
+    private IHangingSnackbarCallback.OnActionClickedListener<RandomObject> button4Callback = new IHangingSnackbarCallback.OnActionClickedListener<RandomObject>() {
         @Override
         public void actionClicked(RandomObject obj) {
             Toast.makeText(getBaseContext(), "Random number from snackbar: " + obj.getRandomNumber(), Toast.LENGTH_SHORT).show();
@@ -46,7 +47,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         findViewById(R.id.button_2).setOnClickListener(this);
         findViewById(R.id.button_3).setOnClickListener(this);
         findViewById(R.id.button_4).setOnClickListener(this);
-        parentLayout = (RelativeLayout) findViewById(R.id.parent_relative_layout);
+        parentLayout = (ViewGroup) findViewById(R.id.parent_relative_layout);
     }
 
     @Override
