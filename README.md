@@ -1,6 +1,6 @@
 # Hanging Snackbar
 
-A (mostly) material Snackbar equivalent that drops instead of rises.
+A (mostly) material Snackbar equivalent that drops instead of rises. Minimum sdk version tested with is 14 but may work with lower.
 
 <img src="http://i.imgur.com/vyZgbph.gif" alt="Regular Snackbar" width="320"/>
 <img src="http://i.imgur.com/rVmIgBa.gif" alt="Regular Snackbar with action" width="320"/>
@@ -58,6 +58,6 @@ repositories {
 App build.gradle:
 ```
 dependencies {
-    compile 'com.picklemixel.mister:hangingsnackbar:0.2.1'
+    compile 'com.picklemixel.mister:hangingsnackbar:0.2.2'
 }
 ```
