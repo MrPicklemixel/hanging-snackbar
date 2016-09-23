@@ -28,7 +28,7 @@ Callback and object can be null.
 
 parentLayoutView must be a RelativeLayout, FrameLayout, or CoordinatorLayout. Other layouts will throw an exception
 
-### Customisation methods
+### Builder customisation methods
 ```
 void setText(String text, int colorId)
 void setActionText(String actionText, IHangingSnackbarCallback.OnActionClickedListener actionCallback, T callbackObject, int colorId)
