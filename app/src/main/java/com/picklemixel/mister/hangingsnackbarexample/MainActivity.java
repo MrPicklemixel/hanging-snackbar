@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.picklemixel.mister.hangingsnackbar.HangingSnackbar;
@@ -64,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_2:
                 new HangingSnackbar.Builder(getBaseContext(), parentLayout, HangingSnackbar.LENGTH_SHORT)
                         .setText("I have an action")
-                        .setActionText("Undo", button2Callback, null)
+                        .setAction("Undo", button2Callback, null)
                         .build()
                         .show();
                 break;
@@ -72,7 +71,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.button_3:
                 button3Snackbar = new HangingSnackbar.Builder(getBaseContext(), parentLayout, HangingSnackbar.LENGTH_INDEFINITE)
                         .setText("I need to be dismissed, also I have more chars so I'm bigger")
-                        .setActionText("Dismiss", button3Callback, null)
+                        .setAction("Dismiss", button3Callback, null)
                         .build()
                         .show();
                 break;
@@ -83,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 new HangingSnackbar.Builder(getBaseContext(), parentLayout, HangingSnackbar.LENGTH_LONG)
                         .setText("I hold an object of any type, I will return it on the action press", R.color.dark_grey)
                         .setTextTypeface(typeface)
-                        .setActionText("Got it", button4Callback, randomObject, R.color.dark_blue)
+                        .setAction("Got it", button4Callback, randomObject, R.color.dark_blue)
                         .setActionTypeface(typeface)
                         .setBackgroundColor(R.color.white)
                         .build()
