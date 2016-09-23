@@ -58,6 +58,6 @@ repositories {
 App build.gradle:
 ```
 dependencies {
-    compile 'com.picklemixel.mister:hangingsnackbar:0.2.1'
+    compile 'com.picklemixel.mister:hangingsnackbar:0.2.2'
 }
 ```
