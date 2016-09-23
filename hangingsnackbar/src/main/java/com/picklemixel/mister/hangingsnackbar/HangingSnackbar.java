@@ -189,9 +189,11 @@ public class HangingSnackbar {
 
     /**
      * Tells the {@link HangingSnackbarController} to add the snackbar to the queue and display it
+     * @return The current {@link HangingSnackbar} object
       */
-    public void show() {
+    public HangingSnackbar show() {
         controller.show(this);
+        return this;
     }
 
     /**
