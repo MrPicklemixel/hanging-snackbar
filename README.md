@@ -61,3 +61,5 @@ dependencies {
     compile 'com.picklemixel.mister:hangingsnackbar:0.2.2'
 }
 ```
+## Feedback
+Please feel free to leave any feedback, email me at pjeffjones@gmail.com or tweet me at @pJeffJones
